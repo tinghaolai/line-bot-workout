@@ -22,7 +22,8 @@ func main() {
 
 	http.HandleFunc("/callback", callbackHandler)
 
-	log.Fatal(http.ListenAndServe(":84", nil))
+	port := os.Getenv("PORT")
+	log.Fatal(http.ListenAndServe(":" + port, nil))
 }
 
 func callbackHandler(w http.ResponseWriter, r *http.Request) {
