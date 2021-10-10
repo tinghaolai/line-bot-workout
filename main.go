@@ -46,7 +46,16 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 				if _, err = client.ReplyMessage(event.ReplyToken, linebot.NewTextMessage(message.Text)).Do(); err != nil {
 					log.Println(err.Error())
 				}
+
+            default:
+                if _, err = client.ReplyMessage(event.ReplyToken, linebot.NewTextMessage("other message received")).Do(); err != nil {
+                    log.Println(err.Error())
+                }
 			}
+		} else {
+            if _, err = client.ReplyMessage(event.ReplyToken, linebot.NewTextMessage("other event received")).Do(); err != nil {
+                log.Println(err.Error())
+            }
 		}
 	}
 }
